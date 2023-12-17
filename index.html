@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>周岁虚岁计算器</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    #result {
+      font-size: 1.5em;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>周岁虚岁计算器</h1>
+
+  <label for="birthdate">选择出生日期：</label>
+  <input type="date" id="birthdate">
+
+  <button onclick="calculateAge()">计算</button>
+
+  <div id="result"></div>
+
+  <script>
+    function calculateAge() {
+      var birthdate = new Date(document.getElementById('birthdate').value);
+      var today = new Date();
+
+      var age = today.getFullYear() - birthdate.getFullYear();
+      var monthDiff = today.getMonth() - birthdate.getMonth();
+
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthdate.getDate())) {
+        age--;
+      }
+
+      var virtualAge = age + 1; // 虚岁为周岁基础上加一
+
+      document.getElementById('result').innerHTML = '周岁：' + age + ' 岁，虚岁：' + virtualAge + ' 岁';
+    }
+  </script>
+</body>
+</html>
